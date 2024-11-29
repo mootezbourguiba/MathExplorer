@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MathExplorer</string>
+    <string name="welcome_message">Découvrez les mathématiques autrement</string>
+    <string name="login_error">Identifiants incorrects</string>
+    <string name="network_error">Problème de connexion</string>
+</resources>

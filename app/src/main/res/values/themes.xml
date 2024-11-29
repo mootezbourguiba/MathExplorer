@@ -1,0 +1,5 @@
+<!-- res/values/themes.xml -->
+<style name="Theme.MathExplorer" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <item name="colorPrimary">@color/primary_blue</item>
+    <item name="colorSecondary">@color/emerald_green</item>
+</style>
