@@ -1,23 +1,32 @@
-// FunctionAnalysisActivity.kt
 package tm.esprit.mathexplorer.ui.activities
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import tm.esprit.mathexplorer.databinding.ActivityFunctionAnalysisBinding
-import tm.esprit.mathexplorer.ui.viewmodels.FunctionAnalysisViewModel
+import tm.esprit.mathexplorer.R
 
 class FunctionAnalysisActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityFunctionAnalysisBinding
-    private lateinit var viewModel: FunctionAnalysisViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityFunctionAnalysisBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_function_analysis)
 
-        binding.analyzeButton.setOnClickListener {
-            val equation = binding.equationEditText.text.toString()
-            // Logique d'analyse de fonction
+        val etFunction = findViewById<EditText>(R.id.etFunction)
+        val btnAnalyze = findViewById<Button>(R.id.btnAnalyze)
+        val tvResults = findViewById<TextView>(R.id.tvResults)
+
+        btnAnalyze.setOnClickListener {
+            val function = etFunction.text.toString()
+            // Implement function analysis logic here
+            val results = analyzeFunction(function)
+            tvResults.text = results
         }
+    }
+
+    private fun analyzeFunction(function: String): String {
+        // Dummy implementation for demonstration
+        return "Analysis results for $function"
     }
 }

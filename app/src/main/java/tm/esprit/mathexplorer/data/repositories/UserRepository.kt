@@ -1,26 +1,21 @@
 package tm.esprit.mathexplorer.data.repositories
 
-import com.google.firebase.auth.FirebaseAuth
 import tm.esprit.mathexplorer.data.models.User
-import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.flow.Flow
 
-class UserRepository(private val firebaseAuth: FirebaseAuth) {
-    suspend fun signIn(email: String, password: String): User? {
-        return try {
-            val result = firebaseAuth.signInWithEmailAndPassword(email, password).await()
-            result.user?.let { firebaseUser ->
-                User(
-                    id = firebaseUser.uid,
-                    email = firebaseUser.email ?: "",
-                    displayName = firebaseUser.displayName
-                )
-            }
-        } catch (e: Exception) {
-            null
-        }
-    }
+// Interface générique de persistance
+interface PersistenceService<T> {
+    suspend fun save(item: T)
+    suspend fun delete(item: T)
+    suspend fun getById(id: String): T?
+    fun getAll(): Flow<List<T>>
+}
 
-    fun signOut() {
-        firebaseAuth.signOut()
-    }
+interface UserRepository {
+    suspend fun insert(user: User)
+    suspend fun update(user: User)
+    suspend fun delete(user: User)
+    suspend fun getUserById(userId: String): User?
+    suspend fun authenticate(email: String, password: String): User?
+    fun getAllUsers(): Flow<List<User>>
 }

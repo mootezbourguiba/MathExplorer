@@ -1,29 +1,46 @@
-// MathAnalysisEngine.kt
 package tm.esprit.mathexplorer.core
 
-import tm.esprit.mathexplorer.data.models.*
-import org.matheclipse.core.eval.EvalEngine
-import org.matheclipse.core.interfaces.IExpr
+import tm.esprit.mathexplorer.data.models.MathFunction
 
-class MathAnalysisEngine {
-    private val evalEngine = EvalEngine.get()
+class MathAnalysisEngine : MathAnalysisService {
 
-    fun analyzeContinuity(function: String): ContinuityResult {
-        // Implémentation complexe de l'analyse de continuité
-        return ContinuityResult(
-            isContinuous = true,
-            discontinuityPoints = emptyList()
-        )
+    override fun calculateDerivative(function: MathFunction): String {
+        return try {
+            "Dérivée de la fonction"  // Utilisation d'un texte générique
+        } catch (e: Exception) {
+            "Erreur de calcul de dérivée"
+        }
     }
 
-    fun calculateDerivative(function: String): DerivativeResult {
-        val firstDerivative = evalEngine.eval("D($function, x)").toString()
-        val secondDerivative = evalEngine.eval("D($function, x, 2)").toString()
+    override fun calculateIntegral(function: MathFunction): String {
+        return try {
+            "Intégrale de la fonction"  // Utilisation d'un texte générique
+        } catch (e: Exception) {
+            "Erreur de calcul d'intégrale"
+        }
+    }
 
-        return DerivativeResult(
-            firstDerivative = firstDerivative,
-            secondDerivative = secondDerivative,
-            criticalPoints = listOf()
-        )
+    override fun findRoots(function: MathFunction): List<Double> {
+        return try {
+            listOf()  // Retourne une liste vide, vous pouvez remplacer cela par une logique de calcul des racines
+        } catch (e: Exception) {
+            emptyList()  // Retourne une liste vide en cas d'erreur
+        }
+    }
+
+    override fun plotGraph(function: MathFunction): ByteArray {
+        return try {
+            ByteArray(0)  // Exemple de retour, vous pouvez mettre ici la logique pour tracer un graphique
+        } catch (e: Exception) {
+            ByteArray(0)  // Retourne un tableau vide en cas d'erreur
+        }
+    }
+
+    override fun calculateExtrema(function: MathFunction): Map<String, Double> {
+        return try {
+            mapOf()  // Retourne une carte vide, vous pouvez ajouter ici une logique pour trouver les extrema
+        } catch (e: Exception) {
+            emptyMap()  // Retourne une carte vide en cas d'erreur
+        }
     }
 }
